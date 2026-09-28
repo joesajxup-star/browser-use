@@ -1019,3 +1019,10 @@ For common development tasks
 uv run examples/simple.py
 ```
 </browser_use_docs>
+
+## Cursor Cloud specific instructions
+
+- Refresh dependencies with `uv sync --dev --all-extras`. There is no `uv.lock`. `uv` lives at `/usr/local/bin`; `~/.local/bin` is not on `PATH`.
+- The default browser channel is Playwright Chromium under `~/.cache/ms-playwright`, ahead of system Google Chrome at `/usr/bin/google-chrome`. Install it with `uvx playwright install chromium --with-deps --no-shell` (`--with-deps` needs sudo).
+- `tests/ci` does not need LLM or Browser Use API keys. Run `uv run pytest -vxs tests/ci`. Lint and types: `uv run ruff check`, `uv run pyright`, or `./bin/lint.sh`.
+- The first browser launch with default extensions downloads them into `~/.config/browseruse/extensions`.
